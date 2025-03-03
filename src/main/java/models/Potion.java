@@ -1,4 +1,4 @@
-package model;
+package models;
 
 public class Potion implements ItemEffect {
     private int healAmount;

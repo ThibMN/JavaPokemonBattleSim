@@ -1,4 +1,4 @@
-package model;
+package models;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ public class Pokemon {
     private int hp, maxHp, attack, specialAttack, defense, specialDefense, speed;
     private Type[] types;
     private List<Move> moves;
-    private Item heldItem;
+    private HeldItems heldItem;
     private StatusEffect statusEffect; // New: Status effect
 
     public Pokemon(String name, int hp, int attack, int specialAttack, int defense, int specialDefense, int speed, Type[] types, List<Move> moves) {
@@ -51,6 +51,14 @@ public class Pokemon {
         System.out.println(name + " has been cured of its status condition!");
     }
 
+    public void attack(Pokemon target, Move move) {
+        double typeMultiplier = Type.getMultiplier(move.getType(), target.getTypes());
+        double damage = move.getPower() * ((double) (move.isPhysical() ? this.attack : this.specialAttack) /
+                (move.isPhysical() ? target.getDefense() : target.getSpecialDefense()))
+                * typeMultiplier * (0.85 + Math.random() * 0.15);
+        target.takeDamage((int) damage);
+    }
+
     // Getters and setters
     public String getName() { return name; }
     public int getHp() { return hp; }
@@ -62,10 +70,10 @@ public class Pokemon {
     public int getSpeed() { return speed; }
     public Type[] getTypes() { return types; }
     public List<Move> getMoves() { return moves; }
-    public Item getHeldItem() { return heldItem; }
+    public HeldItems getHeldItem() { return heldItem; }
 
     public void setHp(int hp) { this.hp = hp; }
     public void setSpeed(int speed) { this.speed = speed; }
     public void setAttack(int attack) { this.attack = attack; }
-    public void setHeldItem(Item heldItem) { this.heldItem = heldItem; }
+    public void setHeldItem(HeldItems heldItem) { this.heldItem = heldItem; }
 }

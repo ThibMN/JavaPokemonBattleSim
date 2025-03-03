@@ -1,4 +1,4 @@
-package model;
+package models;
 
 import java.util.Random;
 
@@ -14,7 +14,8 @@ public class Combat {
     }
 
     public void startBattle() {
-        System.out.println("Battle starts between " + playerPokemon.getName() + " and " + opponentPokemon.getName() + "!");
+        System.out.println(
+                "Battle starts between " + playerPokemon.getName() + " and " + opponentPokemon.getName() + "!");
 
         while (!playerPokemon.isFainted() && !opponentPokemon.isFainted()) {
             takeTurn();
@@ -36,7 +37,8 @@ public class Combat {
 
         // Determine attack order
         Pokemon first, second;
-        if (playerPokemon.getSpeed() > opponentPokemon.getSpeed() || (playerPokemon.getSpeed() == opponentPokemon.getSpeed() && random.nextBoolean())) {
+        if (playerPokemon.getSpeed() > opponentPokemon.getSpeed() ||
+                (playerPokemon.getSpeed() == opponentPokemon.getSpeed() && random.nextBoolean())) {
             first = playerPokemon;
             second = opponentPokemon;
         } else {
