@@ -1,8 +1,8 @@
 package models;
 
 public class Item {
-    private String name;
-    private ItemEffect effect;
+    private final String name;
+    private final ItemEffect effect;
 
     public Item(String name, ItemEffect effect) {
         this.name = name;

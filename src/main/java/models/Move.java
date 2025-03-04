@@ -1,12 +1,12 @@
 package models;
 
 public class Move {
-    private String name;
-    private int power;
-    private Type type;
-    private boolean isPhysical;
-    private double secondaryEffectChance; // Chance d'un effet secondaire (ex: brûlure, paralysie)
-    private StatusEffect secondaryEffect; // Effet secondaire de l'attaque
+    private final String name;
+    private final int power;
+    private final Type type;
+    private final boolean isPhysical;
+    private final double secondaryEffectChance; // Chance of a secondary effect (ex: burning, paralysis)
+    private final StatusEffect secondaryEffect; // secondary effect of the attack
 
     public Move(String name, int power, Type type, boolean isPhysical, double secondaryEffectChance, StatusEffect secondaryEffect) {
         this.name = name;
