@@ -3,10 +3,16 @@ package models;
 import java.util.List;
 
 public class Pokemon {
-    private String name;
-    private int hp, maxHp, attack, specialAttack, defense, specialDefense, speed;
-    private Type[] types;
-    private List<Move> moves;
+    private final String name;
+    private int hp;
+    private final int maxHp;
+    private int attack;
+    private final int specialAttack;
+    private final int defense;
+    private final int specialDefense;
+    private int speed;
+    private final Type[] types;
+    private final List<Move> moves;
     private HeldItems heldItem;
     private StatusEffect statusEffect; // New: Status effect
 
