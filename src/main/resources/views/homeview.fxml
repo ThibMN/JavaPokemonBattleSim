@@ -15,8 +15,8 @@
             onAction="#goToTeamCreation"
             style="-fx-font-size: 16px;"/>
 
-    <Button text="Voir les statistiques"
-            onAction="#goToStatistics"
+    <Button text="Lancer un combat"
+            onAction="#goToBattle"
             style="-fx-font-size: 16px;"/>
 
     <Button text="Quitter"

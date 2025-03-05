@@ -1,0 +1,41 @@
+/* Style général */
+.root {
+    -fx-background-color: #EDF2F4;
+    -fx-font-family: 'Arial';
+}
+
+/* Texte : Pokémon adverse */
+#opponentPokemonName {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-fill: #EF233C;
+}
+#opponentPokemonHp {
+    -fx-font-size: 16px;
+}
+
+/* Texte : Pokémon joueur */
+#playerPokemonName {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-fill: #2A9D8F;
+}
+#playerPokemonHp {
+    -fx-font-size: 16px;
+}
+
+/* Boutons d'attaque */
+.button {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: #8D99AE;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+#runButton {
+    -fx-background-color: #D90429;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}

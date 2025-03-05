@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.BattleController"
+            style="-fx-background-color: white; -fx-padding: 10;">
+
+    <!-- Informations du Pokémon adversaire -->
+    <VBox layoutX="400" layoutY="20" alignment="CENTER">
+        <Text fx:id="opponentPokemonName" style="-fx-font-weight: bold;" text="Adversaire : Salamèche" />
+        <Text fx:id="opponentPokemonHp" text="PV : 100/100" />
+    </VBox>
+
+    <!-- Journal central -->
+    <TextArea fx:id="logArea"
+              editable="false"
+              wrapText="true"
+              layoutX="200"
+              layoutY="100"
+              prefHeight="250"
+              prefWidth="400"
+              style="-fx-font-family: 'Courier New'; -fx-font-size: 14;" />
+
+    <!-- Informations du Pokémon du joueur -->
+    <VBox layoutX="20" layoutY="400" alignment="CENTER">
+        <Text fx:id="playerPokemonName" style="-fx-font-weight: bold;" text="Votre Pokémon : Pikachu" />
+        <Text fx:id="playerPokemonHp" text="PV : 100/100" />
+    </VBox>
+
+    <!-- Boutons des mouvements -->
+    <GridPane layoutX="270" layoutY="400" hgap="15" vgap="15" alignment="CENTER">
+        <!-- Première ligne de boutons -->
+        <Button text="Move 1" fx:id="move1" onAction="#onSelectMove1" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+        <Button text="Move 2" fx:id="move2" onAction="#onSelectMove2" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+        <!-- Deuxième ligne de boutons -->
+        <Button text="Move 3" fx:id="move3" onAction="#onSelectMove3" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <Button text="Move 4" fx:id="move4" onAction="#onSelectMove4" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+    </GridPane>
+
+    <!-- Bouton pour fuir le combat -->
+    <Button text="Fuir le combat" fx:id="runButton"
+            onAction="#onRun"
+            layoutX="400"
+            layoutY="500"
+            style="-fx-font-size: 12; -fx-text-fill: red;" />
+</AnchorPane>

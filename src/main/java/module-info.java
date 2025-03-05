@@ -1,11 +1,9 @@
 module com.example.javapokemonbattlesim {
     requires javafx.controls;
     requires javafx.fxml;
-    requires org.controlsfx.controls;
-    requires net.synedra.validatorfx;
-    requires org.kordamp.bootstrapfx.core;
 
-    opens com.example.javapokemonbattlesim to javafx.fxml;
-    exports com.example.javapokemonbattlesim;
-    opens models to org.junit.platform.commons;
+    exports controllers; // Permet d'exposer le package controllers pour d'autres modules
+    exports Main;        // Si ce n'était pas déjà fait pour votre classe Main
+
+    opens controllers to javafx.fxml; // Spécifiquement nécessaire pour le FXML loader
 }

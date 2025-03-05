@@ -1,7 +1,7 @@
 package controllers;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+import Main.Main;
 
 public class HomeController {
 
@@ -9,8 +9,8 @@ public class HomeController {
         Main.setRoot("/views/TeamCreation");
     }
 
-    public void goToStatistics(ActionEvent event) {
-        Main.setRoot("/views/Statistics");
+    public void goToBattle(ActionEvent event) {
+        Main.setRoot("/views/BattleView");
     }
 
     public void exitApp(ActionEvent event) {
