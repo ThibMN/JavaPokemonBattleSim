@@ -28,4 +28,8 @@ public class Move {
     public boolean isPhysical() { return isPhysical; }
     public double getSecondaryEffectChance() { return secondaryEffectChance; }
     public StatusEffect getSecondaryEffect() { return secondaryEffect; }
+
+    public StatusEffect getStatusEffect() {
+        return secondaryEffect;
+    }
 }

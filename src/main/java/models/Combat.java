@@ -12,8 +12,8 @@ public class Combat {
     private Random random;
 
     public Combat(List<Pokemon> playerTeam, List<Pokemon> opponentTeam) {
-        if (playerTeam.size() != 3 || opponentTeam.size() != 3) {
-            throw new IllegalArgumentException("Each team must have exactly 3 Pokemon");
+        if (playerTeam.size() != 5 || opponentTeam.size() != 5) {
+            throw new IllegalArgumentException("Each team must have exactly 5 Pokemons");
         }
         this.playerTeam = new ArrayList<>(playerTeam);
         this.opponentTeam = new ArrayList<>(opponentTeam);
@@ -134,7 +134,7 @@ public class Combat {
                 .orElse(null);
     }
 
-    private boolean isTeamDefeated(List<Pokemon> team) {
+    public boolean isTeamDefeated(List<Pokemon> team) {
         return team.stream().allMatch(Pokemon::isFainted);
     }
 
@@ -147,5 +147,17 @@ public class Combat {
         return String.join(" | ", team.stream()
                 .map(p -> p.getName() + " (" + p.getHp() + "/" + p.getMaxHp() + ")")
                 .toArray(String[]::new));
+    }
+
+    public List<Pokemon> getOpponentTeam() {
+        return opponentTeam;
+    }
+
+    public List<Pokemon> getPlayerTeam() {
+        return playerTeam;
+    }
+
+    public Move selectOpponentMove() {
+        return activeOpponentPokemon.getMoves().get(random.nextInt(activeOpponentPokemon.getMoves().size()));
     }
 }

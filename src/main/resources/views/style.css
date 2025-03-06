@@ -39,3 +39,28 @@
     -fx-font-weight: bold;
     -fx-cursor: hand;
 }
+/* Team Status */
+#playerTeamStatus, #opponentTeamStatus {
+    -fx-font-size: 14px;
+    -fx-fill: #2B2D42;
+}
+
+/* Switch Pokemon Buttons */
+.switch-button {
+    -fx-background-color: #2B2D42;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-padding: 5px 10px;
+}
+
+.switch-button:disabled {
+    -fx-opacity: 0.5;
+}
+
+/* Pokemon Switch Menu */
+.switch-menu {
+    -fx-background-color: #EDF2F4;
+    -fx-padding: 10px;
+    -fx-border-color: #8D99AE;
+    -fx-border-radius: 5px;
+}
