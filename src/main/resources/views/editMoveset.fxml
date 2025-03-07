@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EditMovesetController" spacing="10" alignment="CENTER">
+    <Label text="Modifier le Moveset de" fx:id="pokemonNameLabel" />
+    <ListView fx:id="movesetList" />
+    <TextField fx:id="newMoveField" promptText="Ajouter une attaque..." />
+    <Button text="Ajouter" onAction="#onAddMove" />
+    <Button text="Enregistrer et Fermer" onAction="#onSaveAndClose" />
+</VBox>
+

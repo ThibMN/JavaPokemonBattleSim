@@ -36,6 +36,7 @@
         <Label text="Pokémon ajoutés :"
                style="-fx-font-size: 14; -fx-font-weight: bold;" />
         <ListView fx:id="teamList" />
+        <Button fx:id="modifyMovesetButton" text="Modifier Movesets" onAction="#onModifyMoveset" />
     </VBox>
 
     <!-- Boutons pour valider ou retourner au menu -->
