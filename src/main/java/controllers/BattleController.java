@@ -354,4 +354,11 @@ public class BattleController {
         }
         wasForcedSwitch = false;
     }
+
+    private void enableMoveButtons() {
+        move1.setDisable(false);
+        move2.setDisable(false);
+        move3.setDisable(false);
+        move4.setDisable(false);
+    }
 }
