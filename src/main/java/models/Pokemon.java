@@ -12,7 +12,7 @@ public class Pokemon {
     private final int specialDefense;
     private int speed;
     private final Type[] types;
-    private final List<Move> moves;
+    private List<Move> moves;
     private HeldItems heldItem;
     private StatusEffect statusEffect; // New: Status effect
 
@@ -63,6 +63,10 @@ public class Pokemon {
                 (move.isPhysical() ? target.getDefense() : target.getSpecialDefense()))
                 * typeMultiplier * (0.85 + Math.random() * 0.15);
         target.takeDamage((int) damage);
+    }
+
+    public void setMoves(List<Move> moves) {
+        this.moves = moves;
     }
 
     // Getters and setters
