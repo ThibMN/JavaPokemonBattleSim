@@ -6,8 +6,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 import models.*;
+import pokemons.*;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 public class BattleController {
     @FXML
@@ -51,102 +55,42 @@ public class BattleController {
         updateTeamStatus();
         log("Battle starts!");
     }
+    private List<Pokemon> createRandomTeam() {
+        List<Class<?>> allPokemonClasses = Arrays.asList(
+                Blastoise.class, Bulbasaur.class, Charmander.class, Dragonite.class, Eevee.class,
+                Mewtwo.class, Pikachu.class, Snorlax.class, Squirtle.class, Venusaur.class
+        );
+
+        Random random = new Random();
+        List<Pokemon> collect = random.ints(0, allPokemonClasses.size())
+                .distinct()
+                .limit(5)
+                .mapToObj(allPokemonClasses::get)
+                .map(clazz -> createPokemonInstance((Class<? extends Pokemon>) clazz))
+                .collect(Collectors.toList());
+        return collect;
+    }
+
+    private Pokemon createPokemonInstance(Class<? extends Pokemon> pokemonClass) {
+        try {
+            return pokemonClass.getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create Pokemon instance", e);
+        }
+    }
 
     private List<Pokemon> createPlayerTeam() {
-        Pokemon pikachu = PokemonSetup.createPokemon(
-                "Pikachu", 100, 55, 50, 40, 50, 90,
-                new Type[]{Type.ELECTRIC},
-                new Move("Thunder Shock", 40, Type.ELECTRIC, true, 1.0, null),
-                new Move("Quick Attack", 30, Type.NORMAL, true, 1.0, null),
-                new Move("Thunder Wave", 0, Type.ELECTRIC, false, 0.9, StatusEffect.PARALYSIS),
-                new Move("Thunder", 90, Type.ELECTRIC, true, 0.8, null)
-        );
-
-        Pokemon bulbasaur = PokemonSetup.createPokemon(
-                "Bulbasaur", 105, 49, 65, 49, 65, 45,
-                new Type[]{Type.GRASS, Type.POISON},
-                new Move("Vine Whip", 45, Type.GRASS, true, 1.0, null),
-                new Move("Tackle", 40, Type.NORMAL, true, 1.0, null),
-                new Move("Leech Seed", 0, Type.GRASS, false, 0.9, null),
-                new Move("Growth", 0, Type.NORMAL, false, 1.0, null)
-        );
-
-        Pokemon charizard = PokemonSetup.createPokemon(
-                "Charizard", 120, 84, 109, 78, 85, 100,
-                new Type[]{Type.FIRE, Type.FLYING},
-                new Move("Flamethrower", 90, Type.FIRE, true, 1.0, null),
-                new Move("Air Slash", 75, Type.FLYING, true, 0.95, null),
-                new Move("Dragon Claw", 80, Type.DRAGON, true, 1.0, null),
-                new Move("Fire Blast", 110, Type.FIRE, true, 0.85, null)
-        );
-
-        Pokemon venusaur = PokemonSetup.createPokemon(
-                "Venusaur", 120, 82, 100, 83, 100, 80,
-                new Type[]{Type.GRASS, Type.POISON},
-                new Move("Solar Beam", 120, Type.GRASS, true, 1.0, null),
-                new Move("Sludge Bomb", 90, Type.POISON, true, 1.0, null),
-                new Move("Earth Power", 90, Type.GROUND, true, 1.0, null),
-                new Move("Giga Drain", 75, Type.GRASS, true, 1.0, null)
-        );
-
-        Pokemon blastoise = PokemonSetup.createPokemon(
-                "Blastoise", 119, 83, 85, 100, 105, 78,
-                new Type[]{Type.WATER},
-                new Move("Hydro Pump", 110, Type.WATER, true, 0.8, null),
-                new Move("Ice Beam", 90, Type.ICE, true, 1.0, null),
-                new Move("Flash Cannon", 80, Type.STEEL, true, 1.0, null),
-                new Move("Aqua Tail", 90, Type.WATER, true, 0.9, null)
-        );
-        return Arrays.asList(pikachu, bulbasaur, charizard, venusaur, blastoise);
+        return createRandomTeam();
     }
 
     private List<Pokemon> createOpponentTeam() {
-        Pokemon gyarados = PokemonSetup.createPokemon(
-                "Gyarados", 125, 125, 60, 79, 100, 81,
-                new Type[]{Type.WATER, Type.FLYING},
-                new Move("Waterfall", 80, Type.WATER, true, 1.0, null),
-                new Move("Ice Fang", 65, Type.ICE, true, 0.95, null),
-                new Move("Dragon Dance", 0, Type.DRAGON, false, 1.0, null),
-                new Move("Crunch", 80, Type.DARK, true, 1.0, null)
-        );
-
-        Pokemon arcanine = PokemonSetup.createPokemon(
-                "Arcanine", 115, 110, 100, 80, 80, 95,
-                new Type[]{Type.FIRE},
-                new Move("Flare Blitz", 120, Type.FIRE, true, 1.0, null),
-                new Move("Extreme Speed", 80, Type.NORMAL, true, 1.0, null),
-                new Move("Wild Charge", 90, Type.ELECTRIC, true, 1.0, null),
-                new Move("Crunch", 80, Type.DARK, true, 1.0, null)
-        );
-
-        Pokemon alakazam = PokemonSetup.createPokemon(
-                "Alakazam", 105, 50, 135, 45, 95, 120,
-                new Type[]{Type.PSYCHIC},
-                new Move("Psychic", 90, Type.PSYCHIC, true, 1.0, null),
-                new Move("Shadow Ball", 80, Type.GHOST, true, 1.0, null),
-                new Move("Energy Ball", 90, Type.GRASS, true, 1.0, null),
-                new Move("Dazzling Gleam", 80, Type.FAIRY, true, 1.0, null)
-        );
-
-        Pokemon snorlax = PokemonSetup.createPokemon(
-                "Snorlax", 160, 110, 65, 65, 110, 30,
-                new Type[]{Type.NORMAL},
-                new Move("Body Slam", 85, Type.NORMAL, true, 1.0, null),
-                new Move("Earthquake", 100, Type.GROUND, true, 1.0, null),
-                new Move("Rest", 0, Type.PSYCHIC, false, 1.0, null),
-                new Move("Heavy Slam", 100, Type.STEEL, true, 1.0, null)
-        );
-
-        Pokemon dragonite = PokemonSetup.createPokemon(
-                "Dragonite", 130, 134, 100, 95, 100, 80,
-                new Type[]{Type.DRAGON, Type.FLYING},
-                new Move("Dragon Claw", 80, Type.DRAGON, true, 1.0, null),
-                new Move("Hurricane", 110, Type.FLYING, true, 0.7, null),
-                new Move("Thunder Punch", 75, Type.ELECTRIC, true, 1.0, null),
-                new Move("Ice Punch", 75, Type.ICE, true, 1.0, null)
-        );
-
-        return Arrays.asList(gyarados, arcanine, alakazam, snorlax, dragonite);
+        //try{
+        //return TeamCreationController.getTeam();
+        //} catch (Exception e) {
+        //throw new RuntimeException(e);
+        //}finally{
+        return createRandomTeam();
+        //}
     }
 
     private void updateInterface() {
