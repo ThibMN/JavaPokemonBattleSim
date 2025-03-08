@@ -62,12 +62,16 @@ public class TeamCreationController {
 
     private void loadAvailablePokemons() {
         List<Pokemon> availablePokemons = List.of(
-                new Pikachu(),
+                new Blastoise(),
                 new Bulbasaur(),
                 new Charmander(),
-                new Squirtle(),
+                new Dragonite(),
                 new Eevee(),
-                new Dragonite()
+                new Mewtwo(),
+                new Pikachu(),
+                new Snorlax(),
+                new Squirtle(),
+                new Venusaur()
         );
 
         ObservableList<String> pokemonNames = FXCollections.observableArrayList();
@@ -95,12 +99,16 @@ public class TeamCreationController {
 
     private Pokemon createPokemonByName(String name) {
         switch (name) {
-            case "Pikachu": return new Pikachu();
+            case "Blastoise": return new Blastoise();
             case "Bulbasaur": return new Bulbasaur();
             case "Charmander": return new Charmander();
-            case "Squirtle": return new Squirtle();
-            case "Eevee": return new Eevee();
             case "Dragonite": return new Dragonite();
+            case "Eevee": return new Eevee();
+            case "Mewtwo": return new Mewtwo();
+            case "Pikachu": return new Pikachu();
+            case "Snorlax": return new Snorlax();
+            case "Squirtle": return new Squirtle();
+            case "Venusaur": return new Venusaur();
             default: throw new IllegalArgumentException("Unknown Pokémon: " + name);
         }
     }
