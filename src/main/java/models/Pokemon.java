@@ -18,7 +18,7 @@ public class Pokemon {
 
     public Pokemon(String name, int hp, int attack, int specialAttack, int defense, int specialDefense, int speed, Type[] types, List<Move> moves) {
         this.name = name;
-        this.hp = this.maxHp = hp;
+        this.hp = this.maxHp = 150 + hp;
         this.attack = attack;
         this.specialAttack = specialAttack;
         this.defense = defense;

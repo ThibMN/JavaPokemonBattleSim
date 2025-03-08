@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import models.Pokemon;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class TeamCreationController {
 
@@ -23,7 +22,7 @@ public class TeamCreationController {
     private ComboBox<String> pokemonSelector;
 
     @FXML
-    private ListView<Pokemon> teamList; // Modifié pour utiliser directement une liste de Pokémon
+    private ListView<Pokemon> teamList;
 
     @FXML
     private Button addPokemonButton;
@@ -32,7 +31,10 @@ public class TeamCreationController {
     private Button submitTeamButton;
 
     @FXML
-    private Button modifyMovesetButton; // Bouton pour modifier moveset
+    private Button backToMenuButton;
+
+    @FXML
+    private Button modifyMovesetButton;
 
     private ObservableList<Pokemon> teamMembers = FXCollections.observableArrayList();
 
@@ -44,6 +46,19 @@ public class TeamCreationController {
         ));
 
         teamList.setItems(teamMembers); // Lie membres de l'équipe
+
+        // Définir une cellFactory pour afficher le nom du Pokémon
+        teamList.setCellFactory(param -> new ListCell<>() {
+            @Override
+            protected void updateItem(Pokemon pokemon, boolean empty) {
+                super.updateItem(pokemon, empty);
+                if (empty || pokemon == null) {
+                    setText(null);
+                } else {
+                    setText(pokemon.getName());
+                }
+            }
+        });
     }
 
     @FXML
@@ -54,22 +69,44 @@ public class TeamCreationController {
             Pokemon newPokemon = new Pokemon(selectedPokemon, 100, 50, 60, 40, 50, 50, null, new ArrayList<>());
             teamMembers.add(newPokemon);
             pokemonSelector.setValue(null);
+        } else if (selectedPokemon == null) {
+            showAlert(Alert.AlertType.WARNING, "Sélection invalide", "Veuillez sélectionner un Pokémon à ajouter.");
+        } else {
+            showAlert(Alert.AlertType.WARNING, "Équipe complète", "L'équipe ne peut pas avoir plus de 5 Pokémon !");
         }
     }
 
     @FXML
+    private void onSubmitTeam() {
+        String teamName = teamNameField.getText();
+
+        if (teamName.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Le nom de l'équipe est requis !");
+            return;
+        }
+
+        if (teamMembers.size() < 5) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Vous devez avoir une équipe complète de 5 Pokémon pour valider.");
+            return;
+        }
+
+        showAlert(Alert.AlertType.INFORMATION, "Succès", "Votre équipe \"" + teamName + "\" a été créée avec succès !");
+
+        teamNameField.clear();
+        pokemonSelector.setValue(null);
+        teamMembers.clear();
+    }
+
+    @FXML
     private void onModifyMoveset() {
-        // Récupère le Pokémon sélectionné dans la liste
         Pokemon selectedPokemon = teamList.getSelectionModel().getSelectedItem();
         if (selectedPokemon != null) {
             try {
-                // Charge la fenêtre d'édition du moveset
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/editMoveset.fxml"));
                 Stage stage = new Stage();
                 stage.setScene(new Scene(loader.load()));
                 stage.setTitle("Modifier Moveset");
 
-                // Passe le Pokémon à la fenêtre
                 EditMovesetController controller = loader.getController();
                 controller.setPokemon(selectedPokemon);
 
@@ -80,6 +117,12 @@ public class TeamCreationController {
         } else {
             showAlert(Alert.AlertType.WARNING, "Aucun Pokémon Sélectionné", "Veuillez sélectionner un Pokémon à modifier.");
         }
+    }
+
+    @FXML
+    private void onBackToMenu(ActionEvent event) {
+        System.out.println("Retour au menu principal...");
+        Main.setRoot("/views/homeview");
     }
 
     private void showAlert(Alert.AlertType type, String title, String content) {

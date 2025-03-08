@@ -15,9 +15,9 @@ public class BattleController {
     @FXML
     private TextArea logArea;
     @FXML
-    private Button move1, move2, move3, move4, runButton;
+    private Button moveButton1, moveButton2, moveButton3, moveButton4, runButton;
     @FXML
-    private Button switch1, switch2, switch3, switch4, switch5;
+    private Button switchButton1, switchButton2, switchButton3, switchButton4, switchButton5;
     @FXML
     private void onSwitchPokemon1() { switchPokemon(0); }
     @FXML
@@ -158,10 +158,10 @@ public class BattleController {
 
     private void initializeMoves() {
         List<Move> moves = playerPokemon.getMoves();
-        move1.setText(moves.get(0).getName());
-        move2.setText(moves.get(1).getName());
-        move3.setText(moves.get(2).getName());
-        move4.setText(moves.get(3).getName());
+        moveButton1.setText(moves.get(0).getName());
+        moveButton2.setText(moves.get(1).getName());
+        moveButton3.setText(moves.get(2).getName());
+        moveButton4.setText(moves.get(3).getName());
     }
 
     private void onMoveSelected(int moveIndex) {
@@ -254,10 +254,10 @@ public class BattleController {
     }
 
     private void disableMoves() {
-        move1.setDisable(true);
-        move2.setDisable(true);
-        move3.setDisable(true);
-        move4.setDisable(true);
+        moveButton1.setDisable(true);
+        moveButton2.setDisable(true);
+        moveButton3.setDisable(true);
+        moveButton4.setDisable(true);
         runButton.setDisable(true);
     }
 
@@ -283,15 +283,16 @@ public class BattleController {
         disableMoves();
         Main.setRoot("/views/homeview");
     }
+
     private void updateSwitchButtons() {
         List<Pokemon> team = combat.getPlayerTeam();
-        switch1.setText(team.get(0).getName() + " (" + team.get(0).getHp() + "/" + team.get(0).getMaxHp() + ")");
-        switch2.setText(team.get(1).getName() + " (" + team.get(1).getHp() + "/" + team.get(1).getMaxHp() + ")");
-        switch3.setText(team.get(2).getName() + " (" + team.get(2).getHp() + "/" + team.get(2).getMaxHp() + ")");
-        switch4.setText(team.get(3).getName() + " (" + team.get(3).getHp() + "/" + team.get(3).getMaxHp() + ")");
-        switch5.setText(team.get(4).getName() + " (" + team.get(4).getHp() + "/" + team.get(4).getMaxHp() + ")");
+        switchButton1.setText(team.get(0).getName() + " (" + team.get(0).getHp() + "/" + team.get(0).getMaxHp() + ")");
+        switchButton2.setText(team.get(1).getName() + " (" + team.get(1).getHp() + "/" + team.get(1).getMaxHp() + ")");
+        switchButton3.setText(team.get(2).getName() + " (" + team.get(2).getHp() + "/" + team.get(2).getMaxHp() + ")");
+        switchButton4.setText(team.get(3).getName() + " (" + team.get(3).getHp() + "/" + team.get(3).getMaxHp() + ")");
+        switchButton5.setText(team.get(4).getName() + " (" + team.get(4).getHp() + "/" + team.get(4).getMaxHp() + ")");
 
-    // Disable button for current Pokemon and fainted Pokemon
+        // Disable button for current Pokemon and fainted Pokemon
         for (int i = 0; i < team.size(); i++) {
             Button switchButton = getSwitchButton(i);
             Pokemon pokemon = team.get(i);
@@ -301,11 +302,11 @@ public class BattleController {
 
     private Button getSwitchButton(int index) {
         switch (index) {
-            case 0: return switch1;
-            case 1: return switch2;
-            case 2: return switch3;
-            case 3: return switch4;
-            case 4: return switch5;
+            case 0: return switchButton1;
+            case 1: return switchButton2;
+            case 2: return switchButton3;
+            case 3: return switchButton4;
+            case 4: return switchButton5;
             default: throw new IllegalArgumentException("Invalid switch button index");
         }
     }
@@ -345,6 +346,7 @@ public class BattleController {
         initializeMoves();
         updateSwitchButtons();
         updateTeamStatus();
+        enableMoveButtons();
 
         // Only do opponent turn if it wasn't a forced switch (fainted Pokemon)
         if (!combat.isTeamDefeated(combat.getOpponentTeam()) &&
@@ -356,9 +358,9 @@ public class BattleController {
     }
 
     private void enableMoveButtons() {
-        move1.setDisable(false);
-        move2.setDisable(false);
-        move3.setDisable(false);
-        move4.setDisable(false);
+        moveButton1.setDisable(false);
+        moveButton2.setDisable(false);
+        moveButton3.setDisable(false);
+        moveButton4.setDisable(false);
     }
 }
