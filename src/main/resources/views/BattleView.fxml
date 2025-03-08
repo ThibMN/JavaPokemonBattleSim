@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx/fxml"
+            fx:controller="controllers.BattleController"
+            style="-fx-background-color: white; -fx-padding: 10;"
+            prefWidth="800" prefHeight="600">
+
+    <!-- Opponent's Pokemon Information -->
+    <VBox layoutX="400" layoutY="20" alignment="CENTER" spacing="5" styleClass="pokemon-info">
+        <Text fx:id="opponentPokemonName" styleClass="pokemon-name" text="Opponent Pokemon" />
+        <Text fx:id="opponentPokemonHp" styleClass="pokemon-hp" text="HP: 100/100" />
+
+        <!-- Opponent's Team Status -->
+        <HBox spacing="10" alignment="CENTER">
+            <Text text="Team:" />
+            <Text fx:id="opponentTeamStatus" text="5/5 Pokemon" />
+        </HBox>
+    </VBox>
+
+    <!-- Battle Log -->
+    <TextArea fx:id="logArea"
+              editable="false"
+              wrapText="true"
+              layoutX="200"
+              layoutY="100"
+              prefHeight="250"
+              prefWidth="400"
+              styleClass="battle-log" />
+
+    <!-- Player's Pokemon Information -->
+    <VBox layoutX="20" layoutY="400" alignment="CENTER" spacing="5" styleClass="pokemon-info">
+        <Text fx:id="playerPokemonName" styleClass="pokemon-name" text="Your Pokemon" />
+        <Text fx:id="playerPokemonHp" styleClass="pokemon-hp" text="HP: 100/100" />
+
+        <!-- Player's Team Status -->
+        <HBox spacing="10" alignment="CENTER">
+            <Text text="Team:" />
+            <Text fx:id="playerTeamStatus" text="5/5 Pokemon" />
+        </HBox>
+    </VBox>
+
+    <!-- Move Buttons -->
+    <GridPane layoutX="270" layoutY="400" hgap="15" vgap="15" alignment="CENTER">
+        <Button text="Move 1" fx:id="moveButton1" onAction="#onSelectMove1"
+                styleClass="move-button" prefWidth="120" prefHeight="30"
+                GridPane.rowIndex="0" GridPane.columnIndex="0" />
+        <Button text="Move 2" fx:id="moveButton2" onAction="#onSelectMove2"
+                styleClass="move-button" prefWidth="120" prefHeight="30"
+                GridPane.rowIndex="0" GridPane.columnIndex="1" />
+        <Button text="Move 3" fx:id="moveButton3" onAction="#onSelectMove3"
+                styleClass="move-button" prefWidth="120" prefHeight="30"
+                GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <Button text="Move 4" fx:id="moveButton4" onAction="#onSelectMove4"
+                styleClass="move-button" prefWidth="120" prefHeight="30"
+                GridPane.rowIndex="1" GridPane.columnIndex="1" />
+    </GridPane>
+
+    <!-- Pokemon Switch Menu -->
+    <VBox layoutX="500" layoutY="400" spacing="10" styleClass="switch-menu">
+        <Label text="Switch Pokemon:" styleClass="switch-label" />
+        <GridPane hgap="10" vgap="10">
+            <Button fx:id="switchButton1" text="Pokemon 1" onAction="#onSwitchPokemon1"
+                    styleClass="switch-button" prefWidth="120" prefHeight="30"
+                    GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <Button fx:id="switchButton2" text="Pokemon 2" onAction="#onSwitchPokemon2"
+                    styleClass="switch-button" prefWidth="120" prefHeight="30"
+                    GridPane.rowIndex="0" GridPane.columnIndex="1" />
+            <Button fx:id="switchButton3" text="Pokemon 3" onAction="#onSwitchPokemon3"
+                    styleClass="switch-button" prefWidth="120" prefHeight="30"
+                    GridPane.rowIndex="1" GridPane.columnIndex="0" />
+            <Button fx:id="switchButton4" text="Pokemon 4" onAction="#onSwitchPokemon4"
+                    styleClass="switch-button" prefWidth="120" prefHeight="30"
+                    GridPane.rowIndex="1" GridPane.columnIndex="1" />
+            <Button fx:id="switchButton5" text="Pokemon 5" onAction="#onSwitchPokemon5"
+                    styleClass="switch-button" prefWidth="120" prefHeight="30"
+                    GridPane.rowIndex="2" GridPane.columnIndex="0" />
+        </GridPane>
+    </VBox>
+
+    <!-- Run Button -->
+    <Button fx:id="runButton" text="Run" onAction="#onRun"
+            layoutX="700" layoutY="550" styleClass="run-button" />
+</AnchorPane>

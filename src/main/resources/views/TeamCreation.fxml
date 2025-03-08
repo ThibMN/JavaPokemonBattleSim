@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+
+<VBox spacing="10" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.TeamCreationController"
+      alignment="CENTER"
+      style="-fx-padding: 20;">
+
+    <!-- Titre de la page -->
+    <Text text="Créer une équipe"
+          style="-fx-font-size: 20; -fx-font-weight: bold;" />
+
+    <!-- Formulaire pour entrer le nom de l'équipe -->
+    <HBox spacing="10" alignment="CENTER">
+        <Label text="Nom de l'équipe :" />
+        <TextField fx:id="teamNameField" promptText="Entrez le nom..." />
+    </HBox>
+
+    <!-- Sélection de Pokémon -->
+    <HBox spacing="10" alignment="CENTER">
+        <Label text="Choisissez un Pokémon :" />
+        <ComboBox fx:id="pokemonSelector" promptText="Sélectionnez un Pokémon" />
+    </HBox>
+
+    <!-- Bouton pour ajouter un Pokémon à l'équipe -->
+    <Button text="Ajouter Pokémon"
+            fx:id="addPokemonButton"
+            onAction="#onAddPokemon" />
+
+    <!-- Liste pour afficher l'équipe (Pokémon ajoutés) -->
+    <VBox spacing="10" alignment="CENTER">
+        <Label text="Pokémon ajoutés :"
+               style="-fx-font-size: 14; -fx-font-weight: bold;" />
+        <ListView fx:id="teamList" />
+        <Button fx:id="modifyMovesetButton" text="Modifier Movesets" onAction="#onModifyMoveset" />
+    </VBox>
+
+    <!-- Boutons pour valider ou retourner au menu -->
+    <HBox spacing="20" alignment="CENTER">
+        <Button text="Retour au menu principal"
+                fx:id="backToMenuButton"
+                onAction="#onBackToMenu" />
+        <Button text="Valider l'équipe"
+                fx:id="submitTeamButton"
+                onAction="#onSubmitTeam" />
+    </HBox>
+
+</VBox>

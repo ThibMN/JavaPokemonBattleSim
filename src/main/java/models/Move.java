@@ -1,6 +1,8 @@
 package models;
 
-public class Move {
+import java.io.Serializable;
+
+public class Move implements Serializable {
     private final String name;
     private final int power;
     private final Type type;
@@ -28,4 +30,8 @@ public class Move {
     public boolean isPhysical() { return isPhysical; }
     public double getSecondaryEffectChance() { return secondaryEffectChance; }
     public StatusEffect getSecondaryEffect() { return secondaryEffect; }
+
+    public StatusEffect getStatusEffect() {
+        return secondaryEffect;
+    }
 }

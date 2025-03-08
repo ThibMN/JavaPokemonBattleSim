@@ -1,8 +1,12 @@
 package models;
 
+import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
-public class Pokemon {
+public class Pokemon implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private final String name;
     private int hp;
     private final int maxHp;
@@ -12,13 +16,13 @@ public class Pokemon {
     private final int specialDefense;
     private int speed;
     private final Type[] types;
-    private final List<Move> moves;
+    private List<Move> moves;
     private HeldItems heldItem;
     private StatusEffect statusEffect; // New: Status effect
 
     public Pokemon(String name, int hp, int attack, int specialAttack, int defense, int specialDefense, int speed, Type[] types, List<Move> moves) {
         this.name = name;
-        this.hp = this.maxHp = hp;
+        this.hp = this.maxHp = 150 + hp;
         this.attack = attack;
         this.specialAttack = specialAttack;
         this.defense = defense;
@@ -63,6 +67,21 @@ public class Pokemon {
                 (move.isPhysical() ? target.getDefense() : target.getSpecialDefense()))
                 * typeMultiplier * (0.85 + Math.random() * 0.15);
         target.takeDamage((int) damage);
+    }
+
+    public void setMoves(List<Move> moves) {
+        this.moves = moves;
+    }
+
+    public void initializeDefaultMoves() {
+        if (moves == null || moves.isEmpty()) {
+            moves = Arrays.asList(
+                    new Move("Tackle", 40, Type.NORMAL, true, 0, null),
+                    new Move("Quick Attack", 40, Type.NORMAL, true, 0, null),
+                    new Move("Struggle", 50, Type.NORMAL, true, 0, null),
+                    new Move("Scratch", 40, Type.NORMAL, true, 0, null)
+            );
+        }
     }
 
     // Getters and setters

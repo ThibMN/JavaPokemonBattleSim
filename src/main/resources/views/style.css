@@ -1,0 +1,66 @@
+/* Style général */
+.root {
+    -fx-background-color: #EDF2F4;
+    -fx-font-family: 'Arial';
+}
+
+/* Texte : Pokémon adverse */
+#opponentPokemonName {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-fill: #EF233C;
+}
+#opponentPokemonHp {
+    -fx-font-size: 16px;
+}
+
+/* Texte : Pokémon joueur */
+#playerPokemonName {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-fill: #2A9D8F;
+}
+#playerPokemonHp {
+    -fx-font-size: 16px;
+}
+
+/* Boutons d'attaque */
+.button {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: #8D99AE;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+#runButton {
+    -fx-background-color: #D90429;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+/* Team Status */
+#playerTeamStatus, #opponentTeamStatus {
+    -fx-font-size: 14px;
+    -fx-fill: #2B2D42;
+}
+
+/* Switch Pokemon Buttons */
+.switch-button {
+    -fx-background-color: #2B2D42;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-padding: 5px 10px;
+}
+
+.switch-button:disabled {
+    -fx-opacity: 0.5;
+}
+
+/* Pokemon Switch Menu */
+.switch-menu {
+    -fx-background-color: #EDF2F4;
+    -fx-padding: 10px;
+    -fx-border-color: #8D99AE;
+    -fx-border-radius: 5px;
+}
