@@ -1,8 +1,12 @@
 package models;
 
+import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
-public class Pokemon {
+public class Pokemon implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private final String name;
     private int hp;
     private final int maxHp;
@@ -67,6 +71,17 @@ public class Pokemon {
 
     public void setMoves(List<Move> moves) {
         this.moves = moves;
+    }
+
+    public void initializeDefaultMoves() {
+        if (moves == null || moves.isEmpty()) {
+            moves = Arrays.asList(
+                    new Move("Tackle", 40, Type.NORMAL, true, 0, null),
+                    new Move("Quick Attack", 40, Type.NORMAL, true, 0, null),
+                    new Move("Struggle", 50, Type.NORMAL, true, 0, null),
+                    new Move("Scratch", 40, Type.NORMAL, true, 0, null)
+            );
+        }
     }
 
     // Getters and setters

@@ -4,9 +4,10 @@ import models.Pokemon;
 import models.Type;
 import models.Move;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Mewtwo extends Pokemon {
+public class Mewtwo extends Pokemon implements Serializable {
     public Mewtwo() {
         super("Mewtwo", 106, 110, 154, 90, 90, 130, new Type[]{Type.PSYCHIC},
                 Arrays.asList(

@@ -86,19 +86,30 @@ public class EditMovesetController {
 
     @FXML
     private void onSaveAndClose() {
-        // Create a new list for the updated moves
         List<Move> updatedMoves = new ArrayList<>();
         for (String moveName : movesetList.getItems()) {
-            // Add new moves (simply by name here, could be enriched)
-            updatedMoves.add(new Move(moveName, 50, null, true, 0, null));
+            // Créer le bon mouvement en fonction du nom
+            updatedMoves.add(createMoveByName(moveName));
         }
-
-        // Set the new list of moves to the Pokémon
         currentPokemon.setMoves(updatedMoves);
-
-        // Close the window
         Stage stage = (Stage) movesetList.getScene().getWindow();
         stage.close();
+    }
+
+    private Move createMoveByName(String name) {
+        switch (name) {
+            case "Thunderbolt": return new Thunderbolt();
+            case "Flamethrower": return new Flamethrower();
+            case "Surf": return new Surf();
+            case "Ice Beam": return new IceBeam();
+            case "Solar Beam": return new SolarBeam();
+            case "Earthquake": return new Earthquake();
+            case "Psychic": return new Psychic();
+            case "Fly": return new Fly();
+            case "Poison Jab": return new PoisonJab();
+            case "Close Combat": return new CloseCombat();
+            default: throw new IllegalArgumentException("Unknown move: " + name);
+        }
     }
 
     private void showAlert(Alert.AlertType type, String title, String content) {

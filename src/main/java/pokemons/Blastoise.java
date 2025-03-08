@@ -4,9 +4,10 @@ import models.Pokemon;
 import models.Type;
 import models.Move;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Blastoise extends Pokemon {
+public class Blastoise extends Pokemon implements Serializable {
     public Blastoise() {
         super("Blastoise", 79, 83, 85, 100, 105, 78, new Type[]{Type.WATER},
             Arrays.asList(

@@ -1,9 +1,10 @@
 package models;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Type {
+public enum Type implements Serializable {
     NORMAL, FIRE, WATER, ELECTRIC, GRASS, ICE, FIGHTING, POISON,
     GROUND, FLYING, PSYCHIC, BUG, ROCK, GHOST, DRAGON, DARK, STEEL, FAIRY;
 

@@ -1,6 +1,8 @@
 package models;
 
-public class Move {
+import java.io.Serializable;
+
+public class Move implements Serializable {
     private final String name;
     private final int power;
     private final Type type;

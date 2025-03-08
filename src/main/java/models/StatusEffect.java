@@ -1,6 +1,8 @@
 package models;
 
-public enum StatusEffect {
+import java.io.Serializable;
+
+public enum StatusEffect implements Serializable {
     PARALYSIS {
         @Override
         public void applyEffect(Pokemon pokemon) {

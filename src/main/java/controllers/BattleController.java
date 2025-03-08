@@ -8,6 +8,8 @@ import javafx.scene.text.Text;
 import models.*;
 import pokemons.*;
 
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -23,16 +25,6 @@ public class BattleController {
     @FXML
     private Button switchButton1, switchButton2, switchButton3, switchButton4, switchButton5;
     @FXML
-    private void onSwitchPokemon1() { switchPokemon(0); }
-    @FXML
-    private void onSwitchPokemon2() { switchPokemon(1); }
-    @FXML
-    private void onSwitchPokemon3() { switchPokemon(2); }
-    @FXML
-    private void onSwitchPokemon4() { switchPokemon(3); }
-    @FXML
-    private void onSwitchPokemon5() { switchPokemon(4); }
-    @FXML
     private Text playerTeamStatus, opponentTeamStatus;
 
     private Combat combat;
@@ -40,21 +32,59 @@ public class BattleController {
     private Pokemon opponentPokemon;
     private boolean wasForcedSwitch = false;
 
-    @FXML
-    public void initialize() {
-        List<Pokemon> playerTeam = createPlayerTeam();
-        List<Pokemon> opponentTeam = createOpponentTeam();
+    private String teamName;
 
-        combat = new Combat(playerTeam, opponentTeam);
-        playerPokemon = combat.getActivePlayerPokemon();
-        opponentPokemon = combat.getActiveOpponentPokemon();
-
-        updateInterface();
-        initializeMoves();
-        updateSwitchButtons();
-        updateTeamStatus();
-        log("Battle starts!");
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+        initializeBattle();
     }
+
+    private void initializeBattle() {
+        try {
+            List<Pokemon> playerTeam = loadTeam(teamName);
+            if (playerTeam == null || playerTeam.isEmpty()) {
+                throw new IllegalStateException("Failed to load player team");
+            }
+
+            List<Pokemon> opponentTeam = createRandomTeam();
+
+            combat = new Combat(playerTeam, opponentTeam);
+            playerPokemon = combat.getActivePlayerPokemon();
+            opponentPokemon = combat.getActiveOpponentPokemon();
+
+            updateInterface();
+            initializeMoves();
+            updateSwitchButtons();
+            updateTeamStatus();
+            log("Battle starts with " + teamName + "'s team!");
+        } catch (Exception e) {
+            System.err.println("Error initializing battle: " + e.getMessage());
+            e.printStackTrace();
+            // Gérer l'erreur de manière appropriée, par exemple retourner au menu principal
+            Main.setRoot("/views/homeview");
+        }
+    }
+
+    private List<Pokemon> loadTeam(String teamName) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("teams/" + teamName + ".team"))) {
+            List<Pokemon> team = (List<Pokemon>) ois.readObject();
+            if (team == null || team.isEmpty()) {
+                throw new Exception("Invalid team data");
+            }
+            // Initialize moves for each Pokemon if needed
+            for (Pokemon pokemon : team) {
+                if (pokemon.getMoves() == null) {
+                    pokemon.initializeDefaultMoves();
+                }
+            }
+            return team;
+        } catch (Exception e) {
+            System.err.println("Error loading team: " + e.getMessage());
+            e.printStackTrace();
+            return createRandomTeam();
+        }
+    }
+
     private List<Pokemon> createRandomTeam() {
         List<Class<?>> allPokemonClasses = Arrays.asList(
                 Blastoise.class, Bulbasaur.class, Charmander.class, Dragonite.class, Eevee.class,
@@ -79,20 +109,6 @@ public class BattleController {
         }
     }
 
-    private List<Pokemon> createPlayerTeam() {
-        return createRandomTeam();
-    }
-
-    private List<Pokemon> createOpponentTeam() {
-        //try{
-        //return TeamCreationController.getTeam();
-        //} catch (Exception e) {
-        //throw new RuntimeException(e);
-        //}finally{
-        return createRandomTeam();
-        //}
-    }
-
     private void updateInterface() {
         playerPokemonName.setText(playerPokemon.getName());
         playerPokemonHp.setText(playerPokemon.getHp() + "/" + playerPokemon.getMaxHp());
@@ -101,11 +117,16 @@ public class BattleController {
     }
 
     private void initializeMoves() {
-        List<Move> moves = playerPokemon.getMoves();
-        moveButton1.setText(moves.get(0).getName());
-        moveButton2.setText(moves.get(1).getName());
-        moveButton3.setText(moves.get(2).getName());
-        moveButton4.setText(moves.get(3).getName());
+        List<Move> pokemonMoves = playerPokemon.getMoves();
+        if (pokemonMoves == null || pokemonMoves.isEmpty()) {
+            playerPokemon.initializeDefaultMoves();
+            pokemonMoves = playerPokemon.getMoves();
+        }
+
+        moveButton1.setText(pokemonMoves.get(0).getName());
+        moveButton2.setText(pokemonMoves.get(1).getName());
+        moveButton3.setText(pokemonMoves.get(2).getName());
+        moveButton4.setText(pokemonMoves.get(3).getName());
     }
 
     private void onMoveSelected(int moveIndex) {
@@ -227,6 +248,21 @@ public class BattleController {
         disableMoves();
         Main.setRoot("/views/homeview");
     }
+
+    @FXML
+    private void onSwitchPokemon1() { switchPokemon(0); }
+
+    @FXML
+    private void onSwitchPokemon2() { switchPokemon(1); }
+
+    @FXML
+    private void onSwitchPokemon3() { switchPokemon(2); }
+
+    @FXML
+    private void onSwitchPokemon4() { switchPokemon(3); }
+
+    @FXML
+    private void onSwitchPokemon5() { switchPokemon(4); }
 
     private void updateSwitchButtons() {
         List<Pokemon> team = combat.getPlayerTeam();

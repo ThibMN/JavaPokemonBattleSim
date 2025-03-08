@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import models.Pokemon;
 import pokemons.*;
 
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TeamCreationController {
@@ -41,12 +43,8 @@ public class TeamCreationController {
 
     @FXML
     public void initialize() {
-        // Load available Pokémon from the pokemons package
         loadAvailablePokemons();
-
-        teamList.setItems(teamMembers); // Link team members
-
-        // Define a cellFactory to display the Pokémon name
+        teamList.setItems(teamMembers);
         teamList.setCellFactory(param -> new ListCell<>() {
             @Override
             protected void updateItem(Pokemon pokemon, boolean empty) {
@@ -127,11 +125,25 @@ public class TeamCreationController {
             return;
         }
 
+        saveTeam(teamName, teamMembers);
+
         showAlert(Alert.AlertType.INFORMATION, "Success", "Your team \"" + teamName + "\" has been successfully created!");
 
         teamNameField.clear();
         pokemonSelector.setValue(null);
         teamMembers.clear();
+    }
+
+    private void saveTeam(String teamName, List<Pokemon> team) {
+        File teamDir = new File("teams");
+        if (!teamDir.exists()) {
+            teamDir.mkdirs();
+        }
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("teams/" + teamName + ".team"))) {
+            oos.writeObject(new ArrayList<>(team));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

@@ -4,9 +4,10 @@ import models.Pokemon;
 import models.Type;
 import models.Move;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Charmander extends Pokemon {
+public class Charmander extends Pokemon implements Serializable {
     public Charmander() {
         super("Charmander", 39, 52, 60, 43, 50, 65, new Type[]{Type.FIRE},
                 Arrays.asList(

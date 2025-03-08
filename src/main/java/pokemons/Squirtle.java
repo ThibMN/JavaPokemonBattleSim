@@ -4,9 +4,10 @@ import models.Pokemon;
 import models.Type;
 import models.Move;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Squirtle extends Pokemon {
+public class Squirtle extends Pokemon implements Serializable {
     public Squirtle() {
         super("Squirtle", 44, 48, 50, 65, 64, 43, new Type[]{Type.WATER},
                 Arrays.asList(

@@ -4,9 +4,10 @@ import models.Pokemon;
 import models.Type;
 import models.Move;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Dragonite extends Pokemon {
+public class Dragonite extends Pokemon implements Serializable {
     public Dragonite() {
         super("Dragonite", 91, 134, 100, 95, 100, 80, new Type[]{Type.DRAGON, Type.FLYING},
                 Arrays.asList(

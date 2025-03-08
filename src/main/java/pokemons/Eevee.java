@@ -4,9 +4,10 @@ import models.Pokemon;
 import models.Type;
 import models.Move;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Eevee extends Pokemon {
+public class Eevee extends Pokemon implements Serializable {
     public Eevee() {
         super("Eevee", 55, 55, 45, 50, 65, 55, new Type[]{Type.NORMAL},
                 Arrays.asList(

@@ -4,9 +4,10 @@ import models.Pokemon;
 import models.Type;
 import models.Move;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Venusaur extends Pokemon {
+public class Venusaur extends Pokemon implements Serializable {
     public Venusaur() {
         super("Venusaur", 80, 82, 100, 83, 100, 80, new Type[]{Type.GRASS, Type.POISON},
                 Arrays.asList(

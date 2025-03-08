@@ -4,9 +4,10 @@ import models.Pokemon;
 import models.Type;
 import models.Move;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Snorlax extends Pokemon {
+public class Snorlax extends Pokemon implements Serializable {
     public Snorlax() {
         super("Snorlax", 160, 110, 65, 65, 110, 30, new Type[]{Type.NORMAL},
                 Arrays.asList(
