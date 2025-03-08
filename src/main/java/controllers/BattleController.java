@@ -231,16 +231,24 @@ public class BattleController {
     }
 
     @FXML
-    private void onSelectMove1() { onMoveSelected(0); }
+    private void onSelectMove1() {
+        onMoveSelected(0);
+    }
 
     @FXML
-    private void onSelectMove2() { onMoveSelected(1); }
+    private void onSelectMove2() {
+        onMoveSelected(1);
+    }
 
     @FXML
-    private void onSelectMove3() { onMoveSelected(2); }
+    private void onSelectMove3() {
+        onMoveSelected(2);
+    }
 
     @FXML
-    private void onSelectMove4() { onMoveSelected(3); }
+    private void onSelectMove4() {
+        onMoveSelected(3);
+    }
 
     @FXML
     private void onRun() {
@@ -250,19 +258,29 @@ public class BattleController {
     }
 
     @FXML
-    private void onSwitchPokemon1() { switchPokemon(0); }
+    private void onSwitchPokemon1() {
+        switchPokemon(0);
+    }
 
     @FXML
-    private void onSwitchPokemon2() { switchPokemon(1); }
+    private void onSwitchPokemon2() {
+        switchPokemon(1);
+    }
 
     @FXML
-    private void onSwitchPokemon3() { switchPokemon(2); }
+    private void onSwitchPokemon3() {
+        switchPokemon(2);
+    }
 
     @FXML
-    private void onSwitchPokemon4() { switchPokemon(3); }
+    private void onSwitchPokemon4() {
+        switchPokemon(3);
+    }
 
     @FXML
-    private void onSwitchPokemon5() { switchPokemon(4); }
+    private void onSwitchPokemon5() {
+        switchPokemon(4);
+    }
 
     private void updateSwitchButtons() {
         List<Pokemon> team = combat.getPlayerTeam();
@@ -282,12 +300,18 @@ public class BattleController {
 
     private Button getSwitchButton(int index) {
         switch (index) {
-            case 0: return switchButton1;
-            case 1: return switchButton2;
-            case 2: return switchButton3;
-            case 3: return switchButton4;
-            case 4: return switchButton5;
-            default: throw new IllegalArgumentException("Invalid switch button index");
+            case 0:
+                return switchButton1;
+            case 1:
+                return switchButton2;
+            case 2:
+                return switchButton3;
+            case 3:
+                return switchButton4;
+            case 4:
+                return switchButton5;
+            default:
+                throw new IllegalArgumentException("Invalid switch button index");
         }
     }
 

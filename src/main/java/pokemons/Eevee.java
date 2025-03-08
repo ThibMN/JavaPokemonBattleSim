@@ -11,10 +11,10 @@ public class Eevee extends Pokemon implements Serializable {
     public Eevee() {
         super("Eevee", 55, 55, 45, 50, 65, 55, new Type[]{Type.NORMAL},
                 Arrays.asList(
-                        new Move("Quick Attack", 40, Type.NORMAL, true, 0, null),
-                        new Move("Bite", 60, Type.DARK, true, 0, null),
-                        new Move("Swift", 60, Type.NORMAL, false, 0, null),
-                        new Move("Take Down", 90, Type.NORMAL, true, 0, null)
+                        new Move("Quick Attack", 40, Type.NORMAL, true, 0, null, 100),
+                        new Move("Bite", 60, Type.DARK, true, 0, null, 100),
+                        new Move("Swift", 60, Type.NORMAL, false, 0, null, 100),
+                        new Move("Take Down", 90, Type.NORMAL, true, 0, null, 85)
                 ));
     }
 }

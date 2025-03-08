@@ -21,6 +21,7 @@ public class Combat {
         this.activeOpponentPokemon = opponentTeam.get(0);
         this.random = new Random();
     }
+
     public Pokemon getActivePlayerPokemon() {
         return activePlayerPokemon;
     }

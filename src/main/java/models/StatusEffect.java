@@ -50,12 +50,14 @@ public enum StatusEffect implements Serializable {
 
     /**
      * Applies the effect on the Pokémon.
+     *
      * @param pokemon The affected Pokémon.
      */
     public abstract void applyEffect(Pokemon pokemon);
 
     /**
      * Determines if the Pokémon is unable to attack this turn.
+     *
      * @return True if the Pokémon cannot attack, false otherwise.
      */
     public abstract boolean preventsAttack();

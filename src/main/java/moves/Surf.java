@@ -6,6 +6,6 @@ import models.StatusEffect;
 
 public class Surf extends Move {
     public Surf() {
-        super("Surf", 90, Type.WATER, false, 0, null);
+        super("Surf", 90, Type.WATER, false, 0, null, 90);
     }
 }

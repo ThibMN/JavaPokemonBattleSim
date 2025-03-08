@@ -97,17 +97,28 @@ public class TeamCreationController {
 
     private Pokemon createPokemonByName(String name) {
         switch (name) {
-            case "Blastoise": return new Blastoise();
-            case "Bulbasaur": return new Bulbasaur();
-            case "Charmander": return new Charmander();
-            case "Dragonite": return new Dragonite();
-            case "Eevee": return new Eevee();
-            case "Mewtwo": return new Mewtwo();
-            case "Pikachu": return new Pikachu();
-            case "Snorlax": return new Snorlax();
-            case "Squirtle": return new Squirtle();
-            case "Venusaur": return new Venusaur();
-            default: throw new IllegalArgumentException("Unknown Pokémon: " + name);
+            case "Blastoise":
+                return new Blastoise();
+            case "Bulbasaur":
+                return new Bulbasaur();
+            case "Charmander":
+                return new Charmander();
+            case "Dragonite":
+                return new Dragonite();
+            case "Eevee":
+                return new Eevee();
+            case "Mewtwo":
+                return new Mewtwo();
+            case "Pikachu":
+                return new Pikachu();
+            case "Snorlax":
+                return new Snorlax();
+            case "Squirtle":
+                return new Squirtle();
+            case "Venusaur":
+                return new Venusaur();
+            default:
+                throw new IllegalArgumentException("Unknown Pokémon: " + name);
         }
     }
 

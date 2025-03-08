@@ -98,17 +98,28 @@ public class EditMovesetController {
 
     private Move createMoveByName(String name) {
         switch (name) {
-            case "Thunderbolt": return new Thunderbolt();
-            case "Flamethrower": return new Flamethrower();
-            case "Surf": return new Surf();
-            case "Ice Beam": return new IceBeam();
-            case "Solar Beam": return new SolarBeam();
-            case "Earthquake": return new Earthquake();
-            case "Psychic": return new Psychic();
-            case "Fly": return new Fly();
-            case "Poison Jab": return new PoisonJab();
-            case "Close Combat": return new CloseCombat();
-            default: throw new IllegalArgumentException("Unknown move: " + name);
+            case "Thunderbolt":
+                return new Thunderbolt();
+            case "Flamethrower":
+                return new Flamethrower();
+            case "Surf":
+                return new Surf();
+            case "Ice Beam":
+                return new IceBeam();
+            case "Solar Beam":
+                return new SolarBeam();
+            case "Earthquake":
+                return new Earthquake();
+            case "Psychic":
+                return new Psychic();
+            case "Fly":
+                return new Fly();
+            case "Poison Jab":
+                return new PoisonJab();
+            case "Close Combat":
+                return new CloseCombat();
+            default:
+                throw new IllegalArgumentException("Unknown move: " + name);
         }
     }
 
